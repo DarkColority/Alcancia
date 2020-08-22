@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "520509293018",
+    "firebase_url": "https://goals-fb238.firebaseio.com",
+    "project_id": "goals-fb238",
+    "storage_bucket": "goals-fb238.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520509293018:android:08047ea83e2b89a30540e3",
+        "android_client_info": {
+          "package_name": "com.example.alcancia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520509293018-ukea439q1v3lhn401v6pumc238oi62m3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkehk1EawwCAFCMcXSDRMiPOrzy9PxImo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520509293018-ukea439q1v3lhn401v6pumc238oi62m3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Alcancia</string>
+    <string name="splash">This is a splash</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_goal">Create a new goal</string>
+    <string name="edit_goal">Edit goal</string>
+    <string name="add_objective">Add Objective</string>
+    <string name="input_goal_name">Enter goal name</string>
+    <string name="input_goal_amount">Enter goal amount</string>
+    <string name="input_obj_name">Enter objective name</string>
+    <string name="obj_added">Author Successfully Added</string>
+    <string name="error">Error: %1$s</string>
+    <string name="input_obj_amount">Enter objective amount</string>
+    <string name="goal_image">Goal Image</string>
+    <string name="goal_name">Goal Name</string>
+    <string name="amount">Amount</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="goal_detail">Goal Detail</string>
+    <string name="goal_amount_detail">1\'000.000</string>
+    <string name="WishList">WishList</string>
+
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="-16dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="10dp"
+        android:background="@color/colorPrimaryDark">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="bottom">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|start"
+            android:text="Total Saved"
+            android:textSize="25sp" />
+
+            <org.fabiomsr.moneytextview.MoneyTextView
+                android:id="@+id/totalGlobal"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                app:amount="1256.56"
+                app:baseTextColor="#0C9F07"
+                app:baseTextSize="30sp"
+                app:decimalDigitsTextSize="30sp"
+                app:decimalMargin="6dp"
+                app:gravity="right"
+                app:includeDecimalSeparator="false"
+                app:symbol="$"
+                app:symbolGravity="start|bottom"
+                app:symbolMargin="6dp"
+                app:symbolTextSize="30sp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <include layout="@layout/goal_grid_load"/>
+        <include layout="@layout/goal_grid_load"/>
+        <include layout="@layout/goal_grid_load"/>
+        <include layout="@layout/goal_grid_load"/>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/goalsList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        android:paddingTop="8dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/colorAccent"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
