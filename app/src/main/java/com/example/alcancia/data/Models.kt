@@ -27,25 +27,7 @@ data class Goals(
     var total: Float = 0.0F,
     var current: Float = 0.0F,
     @get:Exclude
-    var objectives: Objectives? = null,
-    @get:Exclude
     var isDeleted: Boolean = false
 )
 
 
-
-class Objectives(objective: ArrayList<Objective>){
-    var objective : ArrayList<Objective>? = null
-    init {
-        this.objective = objective
-    }
-}
-
-data class Objective(
-    @get:Exclude
-    var id: String? = null,
-    var goalId: String? = null,
-    var name: String = "",
-    var total: Float = 0.0F,
-    var current: Float = 0.0F
-)

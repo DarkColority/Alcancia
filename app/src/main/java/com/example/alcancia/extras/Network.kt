@@ -1,4 +1,4 @@
-package com.example.alcancia
+package com.example.alcancia.extras
 
 import android.content.Context
 import android.net.ConnectivityManager

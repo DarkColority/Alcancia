@@ -34,6 +34,23 @@ class Repo {
         }
         return mutableData
     }
+    fun getGoalById(id: String): LiveData<MutableList<Goals>>{
+
+        val mutableData = MutableLiveData<MutableList<Goals>>()
+        db.collection("Goals").document(id).get().addOnSuccessListener {result ->
+
+            val listData = mutableListOf<Goals>()
+                val name = result.getString("name")
+                val amount = result.getDouble("amount")?.toFloat()
+                val current = result.getDouble("current")?.toFloat()
+                val goal = Goals(id, name!!, amount!!, current!!)
+                listData.add(goal)
+
+
+            mutableData.value = listData
+        }
+        return mutableData
+    }
 
     fun saveData(name: String, amount: Double, current: Double): String{
         var id = ""
@@ -61,17 +78,6 @@ class Repo {
         return id
     }
 
-    fun saveObjectives(objs: ArrayList<Objective>){
-
-        val dispatch = hashMapOf<String, Any>()
-
-        dispatch["objectives"] = objs
-
-        db.collection("Goals").document(objs[0].goalId!!)
-            .set(dispatch)
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-    }
 
     fun updateGoal(goal: ArrayList<Goals>){
 
@@ -80,9 +86,8 @@ class Repo {
 
         val data1 = hashMapOf(
             "name" to goal[0].name,
-            "total" to goal[0].total,
-            "current" to goal[0].current,
-            "objectives" to listOf(goal[0].objectives)
+            "amount" to goal[0].total,
+            "current" to goal[0].current
         )
         goals.document(goal[0].id!!).set(data1)
 
@@ -98,7 +103,7 @@ class Repo {
 
         db.collection("Goals").document(id)
             .set(dispatch)*/
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated!") }
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
         // [END set_document]
     }

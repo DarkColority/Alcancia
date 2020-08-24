@@ -35,7 +35,7 @@
                 android:layout_width="265dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                app:amount="1256.56"
+                app:amount="0.00"
                 app:baseTextColor="#0C9F07"
                 app:baseTextSize="30sp"
                 app:decimalDigitsTextSize="30sp"

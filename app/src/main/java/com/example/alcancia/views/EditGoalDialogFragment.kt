@@ -11,7 +11,6 @@ import androidx.fragment.app.DialogFragment
 
 import com.example.alcancia.R
 import com.example.alcancia.data.Goals
-import com.example.alcancia.data.Objective
 import kotlinx.android.synthetic.main.fragment_edit_goal_dialog.*
 import kotlinx.android.synthetic.main.fragment_edit_goal_dialog.addObjsList
 import kotlinx.android.synthetic.main.fragment_edit_goal_dialog.btnNewObj
@@ -46,7 +45,6 @@ import kotlinx.android.synthetic.main.fragment_edit_goal_dialog.chkObjs
                 }
             }
             val goal = ArrayList<Goals>()
-            val objs = ArrayList<Objective>()
 
             /*objs.add(0, Objective(goal[0].id,"Parte 1",5000.0F))
             objs.add(1, Objective( "","Parte 2", 5000.0F))
@@ -84,8 +82,6 @@ import kotlinx.android.synthetic.main.fragment_edit_goal_dialog.chkObjs
                     android.R.string.no, Toast.LENGTH_SHORT).show()
 
             }
-
-
             builder.show()
         }
     }

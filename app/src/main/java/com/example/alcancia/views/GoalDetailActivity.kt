@@ -1,49 +1,111 @@
 package com.example.alcancia.views
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import com.example.alcancia.R
 import com.example.alcancia.data.Goals
-import com.example.alcancia.data.Objective
-import com.example.alcancia.data.Objectives
 import kotlinx.android.synthetic.main.activity_goal_detail.*
-import kotlinx.android.synthetic.main.list_obejctives_detail.*
 
 class GoalDetailActivity : AppCompatActivity() {
     private val goal = Goals()
+    private val handler = Handler()
+    val viewModel = GoalsViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_goal_detail)
 
-
-
-        tvGoalDetail.text = intent.getStringExtra("name")
-        tvAmountDetail.text = intent.getStringExtra("total").toString()
         val goalId = intent.getStringExtra("id")
+        observeData(goalId)
+       
+    }
 
-        val fruits: ArrayList<Objective> = ArrayList()
-        fruits.add(Objective("",goalId,"Apple", 100.00F))
-        fruits.add(Objective("",goalId,"Peach",100.00F))
-        fruits.add(Objective("",goalId,"Banana",100.00F))
-        fruits.add(Objective("",goalId,"Water Melon", 100.00F))
-        fruits.add(Objective("",goalId,"Apple", 100.00F))
+    private fun observeData(goalId: String){
+        viewModel.fetchGoalById(goalId).observe(this, Observer {
+            fillData(it)
+        })
+    }
 
-        val adapter = CustomAdapter(this, fruits)
+    private fun fillData(goal:MutableList<Goals>){
+        val name = goal[0].name
+        val amount = goal[0].total
+        val current = goal[0].current
+        btnConfirm.isClickable = false
+        tvGoalDetail.text = name
+        tvAmountDetail.text = amount.toString()
 
-        list_objectives_goal_detail.adapter = adapter
+        showProgressBar(current.toDouble(), amount.toDouble())
+        btnEditGoal.setOnClickListener {
+            etGoalDetail.visibility = View.VISIBLE
+            etGoalDetail.setText(name)
+            etAmountDetail.visibility = View.VISIBLE
+            etAmountDetail.setText(amount.toString())
+            tvAmountDetail.visibility = View.GONE
+            tvGoalDetail.visibility = View.GONE
 
-        list_objectives_goal_detail.onItemClickListener = AdapterView.OnItemClickListener{ parent, view, position, id ->
-            Toast.makeText(this, fruits[position].name, Toast.LENGTH_SHORT).show()
-
+            //EditGoalDialogFragment(goalId).show(supportFragmentManager, "")
+            btnConfirm.isClickable = true
         }
 
-        btnEditGoal.setOnClickListener {
-            EditGoalDialogFragment(goalId).show(supportFragmentManager, "")
 
+        btnConfirm.setOnClickListener{
+            var newName = etGoalDetail.text.toString()
+            var newAmount = etAmountDetail.text.toString()
+            var newCurrent = editCurrent.text.toString()
 
+            if(newAmount.isEmpty()){
+                newAmount = amount.toString()
+            }
+            if(newName.isEmpty()){
+                newName = name
+            }
+
+            val goals= ArrayList<Goals>()
+            goals.add(Goals(goal[0].id, newName, newAmount.toFloat(), newCurrent.toFloat()))
+
+            Thread{ kotlin.run {
+                viewModel.updateGoals(goals)
+            }}.start()
         }
     }
+
+    private fun showProgressBar(current: Double, amount: Double){
+        val progression = (current.toInt()*100).div(amount)
+        Thread(Runnable {
+             // Update the progress bar and display the current value
+             handler.post(Runnable {
+                 progressBar!!.progress = progression.toInt()
+ 
+                 when {
+                     progression <= 30.0 -> {
+                         progressBar.progressDrawable.setColorFilter(
+                             Color.RED, android.graphics.PorterDuff.Mode.SRC_IN
+                         );
+                     }
+                     (progression > 30.1 && progression <= 75.0) -> {
+                         progressBar.progressDrawable.setColorFilter(
+                             Color.YELLOW, android.graphics.PorterDuff.Mode.SRC_IN);
+                     }
+                     (progression > 75.1 && progression <= 100.0) -> {
+                         progressBar.progressDrawable.setColorFilter(
+                             Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
+                     }
+                 }
+             })
+             try {
+                 Thread.sleep(100)
+             } catch (e: InterruptedException) {
+                 e.printStackTrace()
+             }
+ 
+         }).start()
+    }
+
 }

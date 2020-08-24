@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
-import com.example.alcancia.Network
+import com.example.alcancia.extras.Network
 import com.example.alcancia.R
 
 class Splash : AppCompatActivity() {
