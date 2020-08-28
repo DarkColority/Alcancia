@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.alcancia.R
 import kotlinx.android.synthetic.main.activity_goals.*
-import kotlinx.android.synthetic.main.fragment_new_goal.*
 
 class GoalsActivity : AppCompatActivity() {
 
@@ -25,17 +24,11 @@ class GoalsActivity : AppCompatActivity() {
         var fragment: Fragment
 
 
-        replaceFragment(NewGoalFragment())
         fragmentLoaded = "goal"
 
         btnContinue.setOnClickListener {
             when (fragmentLoaded) {
-                "goal" -> {
-                    fragment = ExtraInfo()
-                    replaceFragment(fragment)
-                    fragmentLoaded = "extra info"
-                    saveGoal()
-                }
+                "goal" -> saveGoal()
 
                 "extra info" -> {
                     //updateGoal()
@@ -46,39 +39,37 @@ class GoalsActivity : AppCompatActivity() {
             }
         }
     }
-    fun replaceFragment(fragment:Fragment){
+    /*fun replaceFragment(fragment:Fragment){
         val transaction = manager.beginTransaction()
         transaction.replace(R.id.fragmentGoal, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
 
-    }
+    }*/
 
-    fun saveGoal() : String?{
+    fun saveGoal() {
 
         val name = inputGoalName.text.toString()
         val amount = inputGoalAmount.text.toString()
-        val current: Double? =  0.0
+        val current: Double? = 0.0
 
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             inputGoalName.error = "This field is required"
-            return "0"
-        } else if(amount <= "0" || amount.isEmpty()){
+
+        } else if (amount <= "0" || amount.isEmpty()) {
             inputGoalAmount.error = "This field is required"
-            return "0"
-        }else{
-            replaceFragment(ExtraInfo())
-            btnContinue.setText("Finish")
-            btnContinue.setIconResource(R.drawable.ic_save_black_24dp)
+
+        } else {
+            //replaceFragment(ExtraInfo())
             Toast.makeText(applicationContext, "Goal added", Toast.LENGTH_LONG).show()
-        }
+
 
 
         Thread(Runnable {
-           goalId = viewModel.saveGoalData(name, amount.toDouble(), current!!).toString()
+            goalId = viewModel.saveGoalData(name, amount.toDouble(), current!!).toString()
         }).start()
 
-        return goalId
+    }
     }
 
     /*fun updateGoal(){

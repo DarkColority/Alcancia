@@ -14,6 +14,7 @@ import com.example.alcancia.views.GoalDetailActivity
 import com.example.alcancia.views.GoalsActivity
 import com.example.alcancia.views.MainActivity
 import kotlinx.android.synthetic.main.goal_grid_layout.*
+import org.w3c.dom.Text
 
 class GoalsAdapter(context: Context) :
     RecyclerView.Adapter<GoalsAdapter.ItemHolder>() {
@@ -46,6 +47,7 @@ class GoalsAdapter(context: Context) :
         holder.icons.setImageResource(R.drawable.ic_attach_money_black_24dp)
         holder.titles.text = goal.name
         holder.amount.text = goal.total.toString()
+        holder.current.text = goal.current.toString()
 
         //holder.progress.text = goal.progress.toString()
 
@@ -67,6 +69,7 @@ class GoalsAdapter(context: Context) :
         var icons = itemView.findViewById<ImageView>(R.id.imgGoal)
         var titles = itemView.findViewById<TextView>(R.id.tvGoal)
         var amount = itemView.findViewById<TextView>(R.id.tvAmount)
+        var current = itemView.findViewById<TextView>(R.id.current)
         var progress = itemView.findViewById<TextView>(R.id.tvProgress)
 
     }

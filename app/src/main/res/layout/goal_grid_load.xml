@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
         android:id="@+id/goalCard1"
         android:layout_width="match_parent"
@@ -31,8 +33,8 @@
 
             <ImageView
                 android:id="@+id/imgGoal1"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -44,7 +46,7 @@
 
             <View
                 android:id="@+id/tvGoal1"
-                android:layout_width="170dp"
+                android:layout_width="130dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -58,7 +60,7 @@
 
             <View
                 android:id="@+id/tvAmount1"
-                android:layout_width="200dp"
+                android:layout_width="130dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -93,6 +95,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+</LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
         android:id="@+id/goalCard2"
         android:layout_width="wrap_content"
@@ -117,8 +123,8 @@
 
             <ImageView
                 android:id="@+id/imgGoal"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -130,7 +136,7 @@
 
             <View
                 android:id="@+id/tvGoal"
-                android:layout_width="170dp"
+                android:layout_width="130dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -144,7 +150,7 @@
 
             <View
                 android:id="@+id/tvAmount"
-                android:layout_width="200dp"
+                android:layout_width="130dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -179,5 +185,5 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
+</LinearLayout>
 </LinearLayout>
